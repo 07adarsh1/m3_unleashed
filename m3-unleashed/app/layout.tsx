@@ -17,8 +17,14 @@ const body = Barlow({
   display: "swap",
 });
 
+// Production URL first, then Vercel's build-time URL, then local dev.
+// Set NEXT_PUBLIC_SITE_URL in Vercel project settings when adding a custom domain.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:4173");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:4173"),
+  metadataBase: new URL(siteUrl),
   title: "BMW M3 Competition — An Interactive Cinematic Experience",
   description:
     "M3 // UNLEASHED — a scroll-driven cinematic microsite. Your scroll is the throttle: drive the film frame by frame, forward and in reverse.",
@@ -42,10 +48,10 @@ const jsonLd = {
   name: "BMW M3 Competition — 4K Cinematic Short Film",
   description:
     "A cinematic short film featuring the BMW M3 Competition, presented as a scroll-interactive experience.",
-  thumbnailUrl: "/og/og-image.jpg",
+  thumbnailUrl: `${siteUrl}/og/og-image.jpg`,
   uploadDate: "2026-08-21",
   duration: "PT33S",
-  contentUrl: "/video/master.mp4",
+  contentUrl: `${siteUrl}/video/master.mp4`,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

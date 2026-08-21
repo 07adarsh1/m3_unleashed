@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "serve out -l 4173",
-    "assets": "node scripts/pipeline.mjs"
+    "assets": "node scripts/pipeline.mjs",
+    "deploy": "vercel --prod --yes"
   },
   "dependencies": {
     "gsap": "^3.12.7",

@@ -1,0 +1,8 @@
+# Not needed at build/deploy time — keeps CLI uploads lean (~57MB deployed)
+assets
+qa-shots
+scripts
+tmp
+out
+.next
+node_modules
